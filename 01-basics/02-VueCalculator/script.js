@@ -1,4 +1,4 @@
-import { createApp, defineComponent } from './vendor/vue.esm-browser.js';
+import { createApp } from './vendor/vue.esm-browser.js';
 
 const calculatorOperators = {
   sum: (a, b) => a + b,
@@ -7,21 +7,35 @@ const calculatorOperators = {
   divide: (a, b) => a / b,
 };
 
-const App = defineComponent({
-  name: 'App',
+createApp({
   data() {
     return {
-      a: 10,
-      b: 0,
+      operands: [0, 0],
       operator: 'sum',
+      operations: [
+        {
+          operator: 'sum',
+          text: '➕',
+        },
+        {
+          operator: 'subtract',
+          text: '➖',
+        },
+        {
+          operator: 'multiply',
+          text: '✖',
+        },
+        {
+          operator: 'divide',
+          text: '➗',
+        },
+      ],
     };
   },
+
   computed: {
     result() {
-      return calculatorOperators[this.operator](this.a, this.b);
+      return calculatorOperators[this.operator]?.(...this.operands);
     },
   },
-});
-
-const app = createApp(App);
-const vm = app.mount('#app');
+}).mount('#app');

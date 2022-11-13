@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="/assets/styles/index.css"/>
+  <title>MarkedList</title>
+  <style>
+    .marked {
+      color: #efc14e;
+    }
+  </style>
+</head>
+<body>
+<div id="app" style="margin-top: 2rem">
+  <div class="container">
+    <div class="form-group">
+      <input type="search" v-model.trim="filter.search"/>
+    </div>
+    <ul>
+      <template v-if="emails">
+        <li v-for="email in filteredEmails"
+        :class="{
+          'marked': email.marked
+        }"
+        >{{ email.email }}</li>
+      </template>
+    </ul>
+  </div>
+</div>
+
+<script type="module" src="./script.js"></script>
+</body>
+</html>
