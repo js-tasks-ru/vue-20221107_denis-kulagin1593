@@ -6,7 +6,11 @@
   </head>
   <body>
     <div id="app">
-      <button type="button">0</button>
+      <button
+        type="button"
+        @click="$data.currentNum+=1">
+        {{ $data.currentNum }}
+      </button>
     </div>
 
     <script type="module" src="./script.js"></script>
