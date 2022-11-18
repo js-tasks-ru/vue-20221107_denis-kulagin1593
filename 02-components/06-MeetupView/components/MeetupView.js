@@ -44,12 +44,5 @@ export default defineComponent({
         </div>
       </div>
     </ui-container>
-    </div>
-    <script>
-    import MeetupDescription from "./MeetupDescription";
-
-    export default {
-      components: {MeetupDescription}
-    }
-    </script>`,
+    </div>`,
 });
