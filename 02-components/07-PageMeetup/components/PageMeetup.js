@@ -24,7 +24,6 @@ export default defineComponent({
     return {
       meetup: null,
       error: null,
-      load: null,
     };
   },
 
@@ -35,53 +34,43 @@ export default defineComponent({
     rej() {
       return this.error;
     },
-    loading() {
-      return this.load;
-    },
   },
 
   watch: {
     meetupId(newValue) {
-      this.load = true;
-      fetchMeetupById(newValue)
-        .then((res) => {
-          this.meetup = res;
-          this.error = null;
-          this.load = false;
-        })
-        .catch((rej) => {
-          this.meetup = null;
-          this.error = rej;
-          this.load = false;
-        });
+      this.getMeetup(newValue);
     },
   },
 
   mounted() {
-    this.load = true;
-    fetchMeetupById(this.meetupId)
-      .then((res) => {
-        this.meetup = res;
-        this.error = null;
-        this.load = false;
-      })
-      .catch((rej) => {
-        this.meetup = null;
-        this.error = rej;
-        this.load = false;
-      });
+    this.getMeetup(this.meetupId);
+  },
+
+  methods: {
+    getMeetup(id) {
+      this.meetup = null;
+      fetchMeetupById(id)
+        .then((res) => {
+          this.meetup = res;
+          this.error = null;
+        })
+        .catch((rej) => {
+          this.meetup = null;
+          this.error = rej;
+        });
+    },
   },
 
   template: `
     <div class="page-meetup">
     <MeetupView v-if="meetup" :meetup="current"/>
 
-    <UiContainer v-else-if="loading">
+    <UiContainer v-else-if="!current && !rej">
       <UiAlert>Загрузка...</UiAlert>
     </UiContainer>
 
-    <UiContainer v-else-if="rej">
-      <UiAlert>error</UiAlert>
+    <UiContainer v-if="rej">
+      <UiAlert>Test Error</UiAlert>
     </UiContainer>
     </div>`,
 });
