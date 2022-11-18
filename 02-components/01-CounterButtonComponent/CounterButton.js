@@ -5,8 +5,8 @@ export default defineComponent({
 
   props: {
     count: {
-      type: String,
-      default: () => '0',
+      type: Number,
+      default: () => 0,
     },
   },
 
@@ -14,7 +14,7 @@ export default defineComponent({
   // Компонент должен иметь входной параметр и порождать событие
   template: `
     <button
-      @click="$emit('update:count', (+count + 1).toString())"
+      @click="$emit('update:count', +count + 1)"
       type="button">{{ count }}
     </button>`,
 });
