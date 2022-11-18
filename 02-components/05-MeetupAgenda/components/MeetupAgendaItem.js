@@ -11,10 +11,10 @@ export default defineComponent({
     },
   },
 
-  data() {
-    return {
-      iconDef: agendaItemIcons[this.agendaItem['type']],
-    };
+  computed: {
+    iconDef() {
+      return agendaItemIcons[this.agendaItem['type']];
+    },
   },
 
   methods: {
@@ -27,7 +27,7 @@ export default defineComponent({
     <div class="agenda-item">
     <div class="agenda-item__col">
       <img
-        :src="\`../../../src/assets/icons/icon-\${$data.iconDef}.svg\`"
+        :src="\`../../../src/assets/icons/icon-\${iconDef}.svg\`"
         class="icon"
         alt="key"/>
     </div>
