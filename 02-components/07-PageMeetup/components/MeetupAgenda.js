@@ -17,7 +17,13 @@ export default defineComponent({
     <ul class="agenda">
     <li class="agenda__item">
       <div>
-        <MeetupAgendaItem v-for="elem in agenda" :agenda-item="elem"/>
+        <MeetupAgendaItem :agenda-item="agenda[0]"/>
+      </div>
+      <div>
+        <MeetupAgendaItem :agenda-item="agenda[1]"/>
+      </div>
+      <div>
+        <MeetupAgendaItem :agenda-item="agenda[2]"/>
       </div>
     </li>
     </ul>`,

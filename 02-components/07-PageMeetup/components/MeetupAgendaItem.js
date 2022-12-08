@@ -1,5 +1,5 @@
-import {defineComponent} from '../vendor/vue.esm-browser.js';
-import {agendaItemIcons, agendaItemDefaultTitles} from '../meetupService.js';
+import { defineComponent } from '../vendor/vue.esm-browser.js';
+import { agendaItemIcons, agendaItemDefaultTitles } from '../../05-MeetupAgenda/meetupService';
 
 export default defineComponent({
   name: 'MeetupAgendaItem',
@@ -11,10 +11,10 @@ export default defineComponent({
     },
   },
 
-  computed: {
-    iconDef() {
-      return agendaItemIcons[this.agendaItem['type']];
-    },
+  data() {
+    return {
+      iconDef: agendaItemIcons[this.agendaItem['type']],
+    };
   },
 
   methods: {
@@ -27,7 +27,7 @@ export default defineComponent({
     <div class="agenda-item">
     <div class="agenda-item__col">
       <img
-        :src="\`../../../src/assets/icons/icon-\${iconDef}.svg\`"
+        :src="\`../../../src/assets/icons/icon-\${$data.iconDef}.svg\`"
         class="icon"
         alt="key"/>
     </div>
